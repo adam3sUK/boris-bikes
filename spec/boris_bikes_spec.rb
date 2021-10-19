@@ -6,6 +6,12 @@ describe DockingStation do
     end
     it { is_expected.to respond_to(:release_bike) }
     it { is_expected.to respond_to(:dock_bike).with(1).argument }
+    it 'passes docked bike to bikes array' do
+        @docking_station = DockingStation.new
+        @bike = Bike.new
+        @docking_station.dock_bike(@bike)
+        expect(@docking_station.bikes).to include(@bike)
+    end
     it 'returns Bike when passsed release_bike method' do
         @docking_station = DockingStation.new
         result = @docking_station.send(:release_bike)
